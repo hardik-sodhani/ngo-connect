@@ -6,13 +6,15 @@ import messages from '../AutoDismissAlert/messages'
 
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
+import Card from 'react-bootstrap/Card'
+import Alert from 'react-bootstrap/Alert'
 
 class SignIn extends Component {
   constructor () {
     super()
 
     this.state = {
-      email: '',
+      username: '',
       password: ''
     }
   }
@@ -35,7 +37,7 @@ class SignIn extends Component {
       }))
       .then(() => history.push('/'))
       .catch(error => {
-        this.setState({ email: '', password: '' })
+        this.setState({ username: '', password: '' })
         msgAlert({
           heading: 'Sign In Failed with error: ' + error.message,
           message: messages.signInFailure,
@@ -45,26 +47,24 @@ class SignIn extends Component {
   }
 
   render () {
-    const { email, password } = this.state
+    const { username, password } = this.state
 
     return (
-      <div className="row">
-        <div className="col-sm-10 col-md-8 mx-auto mt-5">
-          <h3>Sign In</h3>
+      <Card variant="success" className="bg-light m-2" style={{ maxWidth: '50rem' }}>
+        <Card.Body>
+          <Card.Title>Sign In</Card.Title>
           <Form onSubmit={this.onSignIn}>
-            <Form.Group controlId="email">
-              <Form.Label>Email address</Form.Label>
+            <Form.Group controlId="username">
               <Form.Control
                 required
-                type="email"
-                name="email"
-                value={email}
-                placeholder="Enter email"
+                type="text"
+                name="username"
+                value={username}
+                placeholder="Username"
                 onChange={this.handleChange}
               />
             </Form.Group>
             <Form.Group controlId="password">
-              <Form.Label>Password</Form.Label>
               <Form.Control
                 required
                 name="password"
@@ -81,8 +81,15 @@ class SignIn extends Component {
               Submit
             </Button>
           </Form>
-        </div>
-      </div>
+          <hr />
+          <Alert variant="warning">
+            <Alert.Heading>Admin only</Alert.Heading>
+            <p>
+              This is a restricted section for admin only.
+            </p>
+          </Alert>
+        </Card.Body>
+      </Card>
     )
   }
 }
