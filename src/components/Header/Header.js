@@ -30,7 +30,7 @@ const Header = ({ user }) => (
   <Navbar bg="dark" variant="dark" expand="lg">
     <Navbar.Brand href="#home">
       <img
-        src="/welfare-logo.png"
+        src="images/welfare-logo.png"
         width="40"
         height="40"
         className="d-inline-block align-top mr-3"
