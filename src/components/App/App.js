@@ -4,6 +4,7 @@ import { Route } from 'react-router-dom'
 import AuthenticatedRoute from '../AuthenticatedRoute/AuthenticatedRoute'
 import Header from '../Header/Header'
 import Home from '../Home/Home'
+import Admin from '../Admin/Admin'
 import SignIn from '../SignIn/SignIn'
 import SignOut from '../SignOut/SignOut'
 import ChangePassword from '../ChangePassword/ChangePassword'
@@ -33,6 +34,9 @@ class App extends Component {
           )} />
           <Route path='/sign-in' render={() => (
             <SignIn setUser={this.setUser} />
+          )} />
+          <Route path='/admin' render={() => (
+            <Admin setUser={this.setUser} />
           )} />
           <AuthenticatedRoute user={user} path='/sign-out' render={() => (
             <SignOut clearUser={this.clearUser} user={user} />
