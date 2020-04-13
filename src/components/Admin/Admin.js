@@ -34,11 +34,10 @@ class Admin extends Component {
       })
 
       const inputData = wb.SheetNames.map(sheetName => {
-        const sData = xlsx.utils.sheet_to_json(wb.Sheets[sheetName], { cellDates: true, dateNF: 'YYYY-MM-DD', header: 1 })
+        const sData = xlsx.utils.sheet_to_json(wb.Sheets[sheetName], { cellDates: true, dateNF: 'YYYY-MM-DD' })
         return {
           name: sheetName,
-          headers: sData[0],
-          data: sData.slice(1)
+          data: sData
         }
       })
 
