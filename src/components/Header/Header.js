@@ -5,7 +5,7 @@ import Form from 'react-bootstrap/Form'
 import FormControl from 'react-bootstrap/FormControl'
 import Button from 'react-bootstrap/Button'
 import NavDropdown from 'react-bootstrap/NavDropdown'
-import Logo from '../../images/welfare-logo.png'
+import Logo from '../../images/hcih-logo.png'
 
 const authenticatedOptions = (
   <Fragment>
@@ -28,12 +28,12 @@ const alwaysOptions = (
 )
 
 const Header = ({ user }) => (
-  <Navbar bg="dark" variant="dark" expand="lg">
+  <Navbar bg="light" variant="light" expand="lg">
     <Navbar.Brand href="#home">
       <img
         src={Logo}
-        width="40"
-        height="40"
+        width="50"
+        height="50"
         className="d-inline-block align-top mr-3"
         alt="NC"
       />
