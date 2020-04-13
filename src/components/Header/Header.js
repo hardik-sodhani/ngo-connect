@@ -1,11 +1,9 @@
 import React, { Fragment } from 'react'
 import Nav from 'react-bootstrap/Nav'
 import Navbar from 'react-bootstrap/Navbar'
-import Form from 'react-bootstrap/Form'
-import FormControl from 'react-bootstrap/FormControl'
-import Button from 'react-bootstrap/Button'
 import NavDropdown from 'react-bootstrap/NavDropdown'
 import Logo from '../../images/hcih-logo.png'
+// import Container from 'react-bootstrap/Container'
 
 const authenticatedOptions = (
   <Fragment>
@@ -23,36 +21,41 @@ const unauthenticatedOptions = (
 
 const alwaysOptions = (
   <Fragment>
-    {/* <Nav.Link to="/">Home</Nav.Link> */}
+    <Nav.Link href="#home">HOME</Nav.Link>
+    <Nav.Link href="#volunteer/openings">WANT TO VOLUNTEER</Nav.Link>
+    <Nav.Link href="#volunteer/signup">NEED TO VOLUNTEER</Nav.Link>
+    <Nav.Link href="#contact">CONTACT US</Nav.Link>
   </Fragment>
 )
 
 const Header = ({ user }) => (
-  <Navbar bg="light" variant="light" expand="lg">
-    <Navbar.Brand href="#home">
-      <img
-        src={Logo}
-        width="50"
-        height="50"
-        className="d-inline-block align-top mr-3"
-        alt="NC"
-      />
-      NGO Volunteer Connect
-    </Navbar.Brand>
-    <Navbar.Toggle aria-controls="basic-navbar-nav" />
-    <Navbar.Collapse id="basic-navbar-nav">
-      <Nav className="mr-auto">
-        {alwaysOptions}
-      </Nav>
-      <Form inline>
-        <FormControl type="text" placeholder="Search" className="m-2" />
-        <Button variant="outline-success" className="m-2">Search</Button>
-      </Form>
-      <NavDropdown id="basic-nav-dropdown" title={<img src="https://icongr.am/clarity/login.svg?size=30&color=ffffff" alt="Admin" />}>
-        {user ? authenticatedOptions : unauthenticatedOptions}
-      </NavDropdown>
-    </Navbar.Collapse>
-  </Navbar>
+  <Fragment>
+    <Navbar bg="light" variant="light">
+      <Navbar.Brand href="#home">
+        <img
+          src={Logo}
+          width="50"
+          height="50"
+          className="d-inline-block align-top mr-3"
+          alt="NC"
+        />
+        <span className="ml-md-5">
+          HOW CAN I HELP?
+        </span>
+      </Navbar.Brand>
+    </Navbar>
+    <Navbar bg="white" variant="light" expand="md">
+      <Navbar.Toggle aria-controls="basic-navbar-nav" />
+      <Navbar.Collapse id="basic-navbar-nav">
+        <Nav className="m-auto">
+          {alwaysOptions}
+        </Nav>
+        <NavDropdown id="basic-nav-dropdown" title={<img src="https://icongr.am/clarity/login.svg?size=30&color=ffffff" alt="Admin" />}>
+          {user ? authenticatedOptions : unauthenticatedOptions}
+        </NavDropdown>
+      </Navbar.Collapse>
+    </Navbar>
+  </Fragment>
 )
 
 export default Header

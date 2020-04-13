@@ -1,8 +1,10 @@
 @import '~bootstrap/scss/bootstrap';
-@import url('https://fonts.googleapis.com/css2?family=Kaushan+Script&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Ledger&display=swap');
+
+$bg-color: #fff8c2;
 
 body {
-  background: url(images/bg-img.jpg) no-repeat center center fixed; 
+  background-color: $bg-color;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -10,8 +12,8 @@ body {
 }
 
 .navbar-brand {
-  font-family: 'Kaushan Script', cursive;
-  font-size: 30px;
+  font-family: 'Ledger', serif;
+  font-size: 25px;
 }
 
 .dropdown-toggle::after {
