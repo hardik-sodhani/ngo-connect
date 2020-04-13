@@ -44,13 +44,13 @@ const Header = ({ user }) => (
       <Nav className="mr-auto">
         {alwaysOptions}
       </Nav>
-      <NavDropdown id="basic-nav-dropdown" title={<img src="https://icongr.am/clarity/login.svg?size=30&color=ffffff" alt="Admin" />}>
-        {user ? authenticatedOptions : unauthenticatedOptions}
-      </NavDropdown>
       <Form inline>
         <FormControl type="text" placeholder="Search" className="m-2" />
         <Button variant="outline-success" className="m-2">Search</Button>
       </Form>
+      <NavDropdown id="basic-nav-dropdown" title={<img src="https://icongr.am/clarity/login.svg?size=30&color=ffffff" alt="Admin" />}>
+        {user ? authenticatedOptions : unauthenticatedOptions}
+      </NavDropdown>
     </Navbar.Collapse>
   </Navbar>
 )
