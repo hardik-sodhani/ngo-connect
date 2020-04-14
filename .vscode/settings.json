@@ -1,0 +1,8 @@
+{
+    "javascript.preferences.quoteStyle": "single",
+    "typescript.preferences.quoteStyle": "single",
+    "prettier.singleQuote": true,
+    "prettier.jsxSingleQuote": true,
+    "editor.tabSize": 2,
+    "javascript.format.insertSpaceAfterFunctionKeywordForAnonymousFunctions": false
+}
