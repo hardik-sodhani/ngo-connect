@@ -5,18 +5,30 @@ import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
+import { Box } from '@material-ui/core';
+import './VolunteerOpportunityCard.scss';
 
 const useStyles = makeStyles({
   root: {
-    minWidth: 275
-  },
-  bullet: {
-    display: 'inline-block',
-    margin: '0 2px',
-    transform: 'scale(0.8)'
+    minWidth: 275,
+    height: '100%'
   },
   title: {
+    fontSize: '24px',
     fontWeight: 500
+  },
+  paragraph: {
+    fontSize: '16px',
+    fontWeight: 100,
+    marginBottom: '10px'
+  },
+  span: {
+    borderRight: '1px solid black',
+    paddingLeft: '5px',
+    paddingRight: '5px',
+    '&:last-of-type': {
+      borderRight: 'none'
+    }
   },
   pos: {
     marginBottom: 12
@@ -25,7 +37,6 @@ const useStyles = makeStyles({
 
 export default function VolunteerOpportunityCard(props) {
   const { ngoSummary } = props;
-  console.log('ngoSummary here: ', ngoSummary);
   const classes = useStyles();
 
   return (
@@ -37,23 +48,57 @@ export default function VolunteerOpportunityCard(props) {
           component='h1'
           gutterBottom
         >
-          {ngoSummary[0].name}
+          {ngoSummary.name}
         </Typography>
-        <Typography variant='h6' component='h2'>
-          Description: {ngoSummary[0].ngoDescription}
-        </Typography>
-        <Typography variant='h6' component='h2'>
-          Support Needed: {ngoSummary[0].supportDescription}
-        </Typography>
-        <Typography variant='h6' component='h2'>
-          Beneficiaries: {ngoSummary[0].beneficiaries}
-        </Typography>
-        <Typography variant='h6' component='h2'>
-          Location: {ngoSummary[0].location}
-        </Typography>
+        <Box>
+          <Typography variant='h6' component='h3' className={classes.paragraph}>
+            <span className='bold-heading'>About: </span>{' '}
+            {ngoSummary.ngoDescription}
+          </Typography>
+        </Box>
+        <Box>
+          <Typography variant='h6' component='h3' className={classes.paragraph}>
+            <span className='bold-heading'>Support Needed: </span>{' '}
+            {ngoSummary.supportDescription}
+          </Typography>
+        </Box>
+        <Box>
+          <Typography variant='h6' component='h3' className={classes.paragraph}>
+            <span className='bold-heading'>Beneficiaries: </span>{' '}
+            {ngoSummary.beneficiaries}
+          </Typography>
+        </Box>
+
+        <Box className={classes.paragraph}>
+          <span className='bold-heading'>Location(s): </span>
+          {ngoSummary.locations &&
+            ngoSummary.locations.length &&
+            ngoSummary.locations.map((location, index) => {
+              return (
+                <span className={classes.span} key={index}>
+                  {location}
+                </span>
+              );
+            })}
+        </Box>
+
+        <Box className={classes.paragraph}>
+          <span className='bold-heading'>Skills: </span>
+          {ngoSummary.skillsNeeded &&
+            ngoSummary.skillsNeeded.length &&
+            ngoSummary.skillsNeeded.map((skill, index) => {
+              return (
+                <span className={classes.span} key={index}>
+                  {skill}
+                </span>
+              );
+            })}
+        </Box>
       </CardContent>
       <CardActions>
-        <Button size='small'>Learn More</Button>
+        {/* TODO: Evolve button styles and add functionality in future task / story */}
+        <Button size='medium'>Call / WhatsApp</Button>
+        <Button size='medium'>Email</Button>
       </CardActions>
     </Card>
   );
