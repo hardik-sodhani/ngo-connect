@@ -4,9 +4,6 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@apollo/react-hoc": "^3.1.3",
-    "@apollo/react-hooks": "^3.1.3",
-    "@apollo/react-testing": "3.1.3",
     "@date-io/moment": "^1.3.11",
     "@material-ui/core": "^4.6.0",
     "@material-ui/icons": "^4.5.1",
@@ -108,13 +105,9 @@
       "src/**/*.{tsx,}",
       "!app/pages/**/index.tsx",
       "!src/components/**/index.tsx",
-      "!src/reducers/index.tsx",
       "!src/index.tsx",
-      "!src/setupTests.tsx",
-      "!src/serviceWorker.tsx",
       "!src/api/*.tsx",
-      "!src/store/*.tsx",
-      "!src/graphql/*.tsx"
+      "!src/store/*.tsx"
     ],
     "coverageThreshold": {
       "global": {
