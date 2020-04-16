@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import { withRouter } from 'react-router-dom';
+import React, {Component} from 'react';
+import {withRouter} from 'react-router-dom';
 import UploadFile from '../Controls/UploadFile';
 import xlsx from 'xlsx';
 
@@ -10,16 +10,16 @@ const SupportedFileTypes = ['xlsx', 'xlsb', 'xlsm', 'xls']
   })
   .join(',');
 
-class Admin extends Component {
-  constructor() {
-    super();
-    this.state = { loading: false };
+class Admin extends Component<any, any> {
+  constructor(props) {
+    super(props);
+    this.state = {loading: false};
     this.handleFile = this.handleFile.bind(this);
     this.handleChange = this.handleChange.bind(this);
   }
 
   handleFile(file) {
-    this.setState({ loading: true });
+    this.setState({loading: true});
     /* Boilerplate to set up FileReader */
     const reader = new FileReader();
     const rABS = !!reader.readAsBinaryString;
@@ -27,23 +27,25 @@ class Admin extends Component {
     else reader.readAsArrayBuffer(file);
     reader.onload = (e) => {
       /* Parse data */
-      const bstr = e.target.result;
+      const bstr = e && e.target && e.target.result;
       const wb = xlsx.read(bstr, {
         type: rABS ? 'binary' : 'array',
         cellDates: true,
         cellNF: false,
         cellText: false,
-        dateNF: 'YYYY-MM-DD'
+        dateNF: 'YYYY-MM-DD',
       });
 
       const inputData = wb.SheetNames.map((sheetName) => {
         const sData = xlsx.utils.sheet_to_json(wb.Sheets[sheetName], {
-          cellDates: true,
-          dateNF: 'YYYY-MM-DD'
+          // @shiju - commenting out the line below as it was throwing a type error,
+          // it seems that type of "cellDates" argument doesn't exist on the method
+          // cellDates: true,
+          dateNF: 'YYYY-MM-DD',
         });
         return {
           name: sheetName,
-          data: sData
+          data: sData,
         };
       });
 
@@ -59,11 +61,8 @@ class Admin extends Component {
 
   render() {
     return (
-      <div className='m-2 col-md-6 float-right'>
-        <UploadFile
-          FileTypes={SupportedFileTypes}
-          handleChange={this.handleChange}
-        />
+      <div className="m-2 col-md-6 float-right">
+        <UploadFile FileTypes={SupportedFileTypes} handleChange={this.handleChange} />
       </div>
     );
   }
