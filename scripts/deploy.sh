@@ -1,3 +1,4 @@
+# eslint no-use-before-define: 0 */  // --> OFF
 # Warn users if node_modules are being tracked or if .gitignore file is missing.
 # Exits deploy script if so.
 if !(git ls-files --error-unmatch node_modules > /dev/null 2>&1) && [ -f .gitignore ];
