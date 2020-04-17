@@ -1,80 +1,81 @@
-import React, { Component } from 'react';
-import { withRouter } from 'react-router-dom';
+import React, {Component} from 'react';
+import {withRouter, RouteComponentProps} from 'react-router-dom';
 
-import { signIn } from '../../api/auth';
+import {signIn} from '../../api/auth';
 
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import Alert from 'react-bootstrap/Alert';
 
-class SignIn extends Component {
-  constructor() {
-    super();
+interface IProps extends RouteComponentProps {
+  history: any;
+  setUser: any;
+}
+
+class SignIn extends Component<IProps, any> {
+  constructor(props) {
+    super(props);
 
     this.state = {
       username: '',
-      password: ''
+      password: '',
     };
   }
 
-  handleChange = (event) =>
+  handleChange = event =>
     this.setState({
-      [event.target.name]: event.target.value
+      [event.target.name]: event.target.value,
     });
 
-  onSignIn = (event) => {
+  onSignIn = event => {
     event.preventDefault();
 
-    const { history, setUser } = this.props;
+    const {history, setUser} = this.props;
 
     signIn(this.state)
-      .then((res) => setUser(res.data.user))
+      .then(res => setUser(res.data.user))
       .then(() => history.push('/'))
-      .catch((error) => {
-        this.setState({ username: '', password: '' });
+      .catch(error => {
+        this.setState({username: '', password: ''});
         console.log(error);
       });
   };
 
   render() {
-    const { username, password } = this.state;
+    const {username, password} = this.state;
 
     return (
-      <Card
-        variant='success'
-        className='bg-light m-2'
-        style={{ maxWidth: '50rem' }}
-      >
+      <Card bg="success" className="bg-light m-2" style={{maxWidth: '50rem'}}>
         <Card.Body>
           <Card.Title>Sign In</Card.Title>
           <Form onSubmit={this.onSignIn}>
-            <Form.Group controlId='username'>
+            <Form.Group controlId="username">
               <Form.Control
                 required
-                type='text'
-                name='username'
+                type="text"
+                name="username"
                 value={username}
-                placeholder='Username'
+                placeholder="Username"
                 onChange={this.handleChange}
               />
             </Form.Group>
-            <Form.Group controlId='password'>
+            <Form.Group controlId="password">
               <Form.Control
                 required
-                name='password'
+                name="password"
                 value={password}
-                type='password'
-                placeholder='Password'
+                type="password"
+                placeholder="Password"
                 onChange={this.handleChange}
               />
             </Form.Group>
-            <Button variant='primary' type='submit'>
+            <Button variant="primary" type="submit">
               Submit
             </Button>
           </Form>
           <hr />
-          <Alert variant='warning'>
+          <Alert variant="warning">
             <Alert.Heading>Admin only</Alert.Heading>
             <p>This is a restricted section for admin only.</p>
           </Alert>

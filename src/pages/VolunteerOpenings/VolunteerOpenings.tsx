@@ -1,12 +1,13 @@
-import React, { Component } from 'react';
-import { withRouter } from 'react-router-dom';
-import { Box } from '@material-ui/core';
-import { Grid, Row } from 'react-flexbox-grid';
+import React, {Component} from 'react';
+import {withRouter, RouteComponentProps} from 'react-router-dom';
+import {Box} from '@material-ui/core';
+import {Grid, Row} from 'react-flexbox-grid';
 import VolunteerOpportunityCard from '../../components/VolunteerOpportunityCard/VolunteerOpportunityCard';
 import './VolunteerOpenings.scss';
+import {INGOSummary} from '../../common/interfaces';
 
 // TODO: Remove mock data below once real data exists and can be fetched from API
-const mockNgoSummary = [
+const mockNgoSummary: INGOSummary[] = [
   {
     name: 'Akshay Patra',
     ngoDescription:
@@ -19,8 +20,8 @@ const mockNgoSummary = [
     skillsNeeded: ['Public Relations', 'Fundraising experience', 'Marketing'],
     contactInformation: {
       email: 'anil.rs@akshayapatra.org',
-      phone: '080 30143400'
-    }
+      phone: '080 30143400',
+    },
   },
   {
     name: 'Bhumi India',
@@ -33,8 +34,8 @@ const mockNgoSummary = [
     locations: ['Remote / Virtual', 'Bombay', 'Delhi'],
     skillsNeeded: ['Microsoft Office skills'],
     contactInformation: {
-      email: 'contact@bhumi.ngo'
-    }
+      email: 'contact@bhumi.ngo',
+    },
   },
   {
     name: 'Bhumi India',
@@ -47,8 +48,8 @@ const mockNgoSummary = [
     locations: ['Remote / Virtual', 'Bombay', 'Delhi'],
     skillsNeeded: ['Microsoft Office skills'],
     contactInformation: {
-      email: 'contact@bhumi.ngo'
-    }
+      email: 'contact@bhumi.ngo',
+    },
   },
   {
     name: 'Bhumi India',
@@ -61,12 +62,12 @@ const mockNgoSummary = [
     locations: ['Remote / Virtual', 'Bombay', 'Delhi'],
     skillsNeeded: ['Microsoft Office skills'],
     contactInformation: {
-      email: 'contact@bhumi.ngo'
-    }
-  }
+      email: 'contact@bhumi.ngo',
+    },
+  },
 ];
 
-class VolunteerOpenings extends Component {
+class VolunteerOpenings extends Component<any, any> {
   constructor(props) {
     super(props);
     this.state = {};
@@ -79,18 +80,14 @@ class VolunteerOpenings extends Component {
 
   render() {
     return (
-      <Box
-        component='div'
-        className='volunteer-openings-page-container'
-        display='block'
-      >
-        <Grid fluid className='grid'>
-          <Row className='data-row' between='xs'>
+      <Box component="div" className="volunteer-openings-page-container" display="block">
+        <Grid fluid className="grid">
+          <Row className="data-row" between="xs">
             {mockNgoSummary && mockNgoSummary.length && (
-              <Box className='volunteer-opening-flex-container'>
+              <Box className="volunteer-opening-flex-container">
                 {mockNgoSummary.map((summaryItem, index) => {
                   return (
-                    <div className='volunteer-opening-flex-item' key={index}>
+                    <div className="volunteer-opening-flex-item" key={index}>
                       <VolunteerOpportunityCard ngoSummary={summaryItem} />
                     </div>
                   );
